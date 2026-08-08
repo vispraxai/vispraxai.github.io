@@ -1,0 +1,17 @@
+baseURL = "https://visprax.ai/"
+title = "Visprax.ai"
+
+disableKinds = ["taxonomy", "term", "RSS"]
+
+# Minify HTML/CSS/JS/SVG/XML in the rendered output.
+# Run with: hugo --minify
+[minify]
+  disableXML = true
+
+[params]
+  description = "Visprax is an applied AI studio — research, tools, and systems that move from idea to something built."
+  email = "contact@visprax.ai"
+  github = "https://github.com/vispraxai"
+
+[build]
+  writeStats = false

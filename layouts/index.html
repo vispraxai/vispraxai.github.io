@@ -1,0 +1,115 @@
+{{ define "main" }}
+{{ $p := .Params }}
+
+<section class="hero">
+
+  <div class="hero-text">
+    <div class="status-badge">
+      <span class="status-dot"></span>
+      {{ $p.status_line }}
+    </div>
+
+    <h1 class="headline">
+      {{ $p.headline_line1 }} <br>
+      <span class="accent">{{ $p.headline_accent }}</span>
+    </h1>
+
+    <p class="hero-lede">{{ $p.lede }}</p>
+
+    <a href="{{ $p.cta_href }}" class="hero-cta">
+      {{ $p.cta_text }}
+      <span class="arrow">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </a>
+  </div>
+
+  <div class="iso-container">
+    <div class="iso-layer">
+      <div class="iso-face iso-base"></div>
+      <div class="iso-face iso-mid"></div>
+      <div class="iso-face iso-core">
+        <div class="iso-core-glow"></div>
+        <div class="iso-core-dot"></div>
+      </div>
+      <div class="iso-face iso-top"></div>
+    </div>
+  </div>
+
+  <div class="feature-stack">
+    {{ range $p.features }}
+    <div class="feature-item">
+      <div class="feature-icon"><div class="feature-icon-dot"></div></div>
+      <div class="feature-text">
+        <h4>{{ .title }}</h4>
+        <p>{{ .desc }}</p>
+      </div>
+    </div>
+    {{ end }}
+  </div>
+
+  <div class="hud-sidebar">
+    <p>LAT: 34.0522&deg; N</p>
+    <p>LNG: 118.2437&deg; W</p>
+    <p class="ready">Ready for Deployment</p>
+  </div>
+</section>
+
+<section id="projects" class="page">
+  <div class="container">
+    {{ $projectsSection := .Site.GetPage "projects" }}
+    <div class="projects-head">
+      <p class="section-index">{{ $projectsSection.Params.index_label | default "Index // 002" }}</p>
+      <h2 class="section-title">{{ $projectsSection.Title }}</h2>
+    </div>
+
+    <div class="project-grid">
+      {{ range $projectsSection.Pages.ByWeight }}
+      <div class="project-card">
+        <div class="card-top">
+          <div class="card-icon"><div class="card-icon-dot"></div></div>
+          <span class="card-status">{{ .Params.status }}</span>
+        </div>
+        <h3 class="card-title">{{ .Title }}</h3>
+        <p class="card-desc">{{ .Params.summary }}</p>
+        <a href="{{ .Params.link | default "#" }}" class="card-link">View Source // &rarr;</a>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<section id="about" class="page about">
+  <div class="container about-grid">
+    <div>
+      <p class="section-index">Index // 003</p>
+      <h2 class="section-title about-title">{{ $p.about_title }}</h2>
+      <div class="about-copy">
+        {{ range $p.about_body }}
+        <p>{{ . | markdownify }}</p>
+        {{ end }}
+      </div>
+    </div>
+
+    <div id="contact" class="contact-card">
+      <h3 class="contact-title">Communication_Port</h3>
+      <div class="contact-row">
+        <span class="label">Email</span>
+        <a href="mailto:{{ .Site.Params.email }}" class="value">{{ .Site.Params.email }}</a>
+      </div>
+      <div class="contact-row">
+        <span class="label">GitHub</span>
+        <a href="{{ .Site.Params.github }}" class="value">visprax_labs</a>
+      </div>
+      <div class="contact-row">
+        <span class="label">Status</span>
+        <span class="value status">Open for inquiries</span>
+      </div>
+      <a href="mailto:{{ .Site.Params.email }}" class="contact-btn" style="display:block; text-align:center;">Establish Connection</a>
+    </div>
+  </div>
+</section>
+
+{{ end }}
