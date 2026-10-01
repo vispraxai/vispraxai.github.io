@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://visprax.ai/sitemap.xml
