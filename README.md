@@ -1,4 +1,4 @@
-# Visprax.ai — Cyber Research Lab
+# Visprax.ai
 
 Static-exported Next.js site for **visprax.ai**.
 
